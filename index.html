@@ -54,9 +54,11 @@
         display: none;
     }
 
+    /* OPTIMIZED IMAGE SIZE FOR ALL DEVICES */
     #pic {
         margin-top: 20px;
-        max-width: 90%;
+        max-width: 60%;
+        max-height: 320px;
         border-radius: 20px;
         display: none;
     }
@@ -75,7 +77,7 @@
         }
     }
 
-    /* BIGGER SIZES FOR PHONES */
+    /* BEST MOBILE SIZING */
     @media (max-width: 600px) {
         h1 {
             font-size: 2.2em;
@@ -89,6 +91,12 @@
 
         #message {
             font-size: 2em;
+        }
+
+        /* Perfect phone image size */
+        #pic {
+            max-width: 80%;
+            max-height: 260px;
         }
     }
 </style>
@@ -106,7 +114,6 @@ With that being said, will you be my Valentine? 💖😄💖
 
 <div id="message"></div>
 
-<!-- THIS IS WHERE THE IMAGE WILL APPEAR -->
 <img id="pic" src="" alt="">
 
 <script>
@@ -120,13 +127,7 @@ yesBtn.addEventListener('click', () => {
     message.textContent = "Thank you! I love you sooooo much 💖🥰💖🥰";
     message.style.display = "block";
 
-    // ----------------------------------------------------
-    // 👉 RIGHT HERE IS WHERE YOU PUT YOUR IMAGE FILE NAME
-    // ----------------------------------------------------
     pic.src = "TCost.JPEG";   
-    // Replace "tia.jpg" with whatever your picture is called
-    // Example: "myPhoto.png" or "ourPicture.jpg"
-
     pic.style.display = "block";
 
     yesBtn.style.display = "none";
@@ -135,7 +136,7 @@ yesBtn.addEventListener('click', () => {
     startConfetti();
 });
 
-// NO BUTTON RUNS AWAY (Works on phone + computer)
+// NO BUTTON RUNS AWAY
 noBtn.addEventListener('mouseover', moveNo);
 noBtn.addEventListener('click', moveNo);
 
@@ -164,4 +165,3 @@ function startConfetti() {
 
 </body>
 </html>
-
