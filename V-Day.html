@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #ffe6e6;
+            text-align: center;
+            padding: 20px;
+            color: #d6336c;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        button {
+            font-size: 1.3em;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        #yesBtn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background: #ff1a4d;
+        }
+
+        #noBtn {
+            background: #cccccc;
+            color: #333;
+        }
+
+        #noBtn:hover {
+            transform: scale(1.1);
+            background: #999999;
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 1.6em;
+            display: none;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.4em;
+            }
+
+            button {
+                width: 80%;
+                font-size: 1.2em;
+            }
+
+            #message {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        Hey Tia, I love you so much!<br>
+        With that being said, will you be my Valentine? 💖😄💖
+    </h1>
+
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 💔</button>
+
+    <div id="message"></div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const message = document.getElementById('message');
+
+        yesBtn.addEventListener('click', () => {
+            message.textContent = "Thank you! I love you sooooo much 💖🥰💖🥰";
+            message.style.display = "block";
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
+        });
+
+        noBtn.addEventListener('click', () => {
+            message.textContent = "Oh no! Maybe next time 💔";
+            message.style.display = "block";
+            noBtn.style.display = "none";
+            yesBtn.style.display = "none";
+        });
+    </script>
+
+</body>
+
+</html>
