@@ -2,122 +2,165 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
 
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #ffe6e6;
-            text-align: center;
-            padding: 20px;
-            color: #d6336c;
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #ffe6e6;
+        text-align: center;
+        padding: 20px;
+        color: #d6336c;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+
+    button {
+        font-size: 1.5em;
+        padding: 14px 28px;
+        margin: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+        background: #ff1a4d;
+    }
+
+    #noBtn {
+        background: #cccccc;
+        color: #333;
+        position: relative;
+    }
+
+    #message {
+        margin-top: 30px;
+        font-size: 1.8em;
+        display: none;
+    }
+
+    #pic {
+        margin-top: 20px;
+        max-width: 90%;
+        border-radius: 20px;
+        display: none;
+    }
+
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        font-size: 24px;
+        animation: float 3s linear forwards;
+    }
+
+    @keyframes float {
+        to {
+            transform: translateY(-100vh);
+            opacity: 0;
         }
+    }
 
+    /* BIGGER SIZES FOR PHONES */
+    @media (max-width: 600px) {
         h1 {
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            line-height: 1.4;
+            font-size: 2.2em;
         }
 
         button {
-            font-size: 1.3em;
-            padding: 12px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        #yesBtn {
-            background: #ff4d6d;
-            color: white;
-        }
-
-        #yesBtn:hover {
-            transform: scale(1.1);
-            background: #ff1a4d;
-        }
-
-        #noBtn {
-            background: #cccccc;
-            color: #333;
-        }
-
-        #noBtn:hover {
-            transform: scale(1.1);
-            background: #999999;
+            width: 95%;
+            font-size: 1.8em;
+            padding: 18px;
         }
 
         #message {
-            margin-top: 30px;
-            font-size: 1.6em;
-            display: none;
-            animation: fadeIn 1s forwards;
+            font-size: 2em;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.4em;
-            }
-
-            button {
-                width: 80%;
-                font-size: 1.2em;
-            }
-
-            #message {
-                font-size: 1.3em;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body>
 
-    <h1>
-        Hey Tia, I love you so much!<br>
-        With that being said, will you be my Valentine? 💖😄💖
-    </h1>
+<h1>
+Hey Tia, I love you so much!<br>
+With that being said, will you be my Valentine? 💖😄💖
+</h1>
 
-    <button id="yesBtn">Yes 💖</button>
-    <button id="noBtn">No 💔</button>
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn">No 💔</button>
 
-    <div id="message"></div>
+<div id="message"></div>
 
-    <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const message = document.getElementById('message');
+<!-- THIS IS WHERE THE IMAGE WILL APPEAR -->
+<img id="pic" src="" alt="">
 
-        yesBtn.addEventListener('click', () => {
-            message.textContent = "Thank you! I love you sooooo much 💖🥰💖🥰";
-            message.style.display = "block";
-            yesBtn.style.display = "none";
-            noBtn.style.display = "none";
-        });
+<script>
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const message = document.getElementById('message');
+const pic = document.getElementById('pic');
 
-        noBtn.addEventListener('click', () => {
-            message.textContent = "Oh no! Maybe next time 💔";
-            message.style.display = "block";
-            noBtn.style.display = "none";
-            yesBtn.style.display = "none";
-        });
-    </script>
+// YES CLICK
+yesBtn.addEventListener('click', () => {
+    message.textContent = "Thank you! I love you sooooo much 💖🥰💖🥰";
+    message.style.display = "block";
+
+    // ----------------------------------------------------
+    // 👉 RIGHT HERE IS WHERE YOU PUT YOUR IMAGE FILE NAME
+    // ----------------------------------------------------
+    pic.src = "TCost.jpg";   
+    // Replace "tia.jpg" with whatever your picture is called
+    // Example: "myPhoto.png" or "ourPicture.jpg"
+
+    pic.style.display = "block";
+
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+
+    startConfetti();
+});
+
+// NO BUTTON RUNS AWAY (Works on phone + computer)
+noBtn.addEventListener('mouseover', moveNo);
+noBtn.addEventListener('click', moveNo);
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+// CONFETTI HEARTS
+function startConfetti() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+    }, 200);
+}
+</script>
 
 </body>
-
 </html>
